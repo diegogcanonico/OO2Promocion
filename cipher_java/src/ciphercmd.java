@@ -1,7 +1,7 @@
 import roo2.CesarCipher;
 
 
-
+import roo2.RailFenceCipher;
 import roo2.VigenereCipher;
 
 import java.io.BufferedReader;

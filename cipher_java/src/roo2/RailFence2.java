@@ -1,6 +1,11 @@
 package roo2;
 
-public class  RailFenceCipher implements Cipher {
+
+class RailFenceCipher2 {
+    /**
+
+public class RailFenceCipher2 implements Cipher {
+
     String[] rails;
     BouncingIndex bIndex;
 
@@ -27,5 +32,5 @@ public class  RailFenceCipher implements Cipher {
         return inputText; 
     }; 
 
-
+**/
 }
