@@ -58,7 +58,9 @@ public class  VigenereCipher implements Cipher {
 
     };
 
-    private char decipherChar( char inputChar){
+
+
+    private char decipherChar(char inputChar){
         int offset;
         char result;
         int idx=java.util.Arrays.binarySearch(alphabet,inputChar);
