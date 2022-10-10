@@ -2,7 +2,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import roo2.BouncingIndex;
-import roo2.RailFenceCipher;
 
 public class BouncingIndexTest {
 
