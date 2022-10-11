@@ -59,7 +59,6 @@ public class  VigenereCipher implements Cipher {
     };
 
 
-
     private char decipherChar(char inputChar){
         int offset;
         char result;
