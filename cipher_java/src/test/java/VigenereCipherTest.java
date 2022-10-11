@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
@@ -109,15 +110,15 @@ public class VigenereCipherTest {
 @Test
     public void nullValue(){
         valor = null;
-        result = this.vigenere.cipher(valor);
+        Assert.assertThrows(NullPointerException.class,()->{this.vigenere.cipher(valor);});
+        Assert.assertThrows(NullPointerException.class,()->{this.vigenere2.cipher(valor);});
         /*
         resultado NullPointerException - se rompe en el metodo cipher cuando hace
         char[] result = new char[inputText.length()]
         El tema es que este valor nunca va a ser ingresado por el usuario, se testea ?
         por teclado todo lo que se ingresa es un string
          */
-        //assertEquals(valor, result);
-        result = this.vigenere2.cipher(valor);
+
 
     }
 

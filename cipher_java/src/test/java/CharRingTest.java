@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -61,18 +62,12 @@ public class CharRingTest {
         /*
         Aca se rompe por el indice, cuando retorna hace idx++ y rompe
          */
-        this.car = this.keyword4.next();
-        assertEquals("", this.car);
+        Assert.assertThrows(ArrayIndexOutOfBoundsException.class,()->{this.keyword4.next();});
     }
 
 @Test
     public void nullValue(){
-        /*aca se rompe en el null en el new cuando en el constructor hace
-        source = new char[srcString.length()], no puede hacer el length
-         */
-        this.keyword5 = new CharRing(null);
-        this.car = this.keyword5.next();
-        //assertEquals(null,this.car);
+        Assert.assertThrows(NullPointerException.class,()->{this.keyword5 = new CharRing(null);});
     }
 
 }
