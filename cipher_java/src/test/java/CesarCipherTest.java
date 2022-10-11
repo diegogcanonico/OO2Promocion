@@ -51,16 +51,6 @@ public class CesarCipherTest {
     }
 
     @Test
-    public void cipherTestNotOkWithNullParameter(){
-        //Arrange
-        String parametro = null;
-        //Act
-        //Assert
-        Assert.assertThrows(NullPointerException.class,
-                ()->{cesarCipher.cipher(parametro);} );
-    }
-
-    @Test
     public void cipherTestNotOkWithEmptyArray(){
         //Arrange
         String[] parametro = new String[1];
@@ -123,22 +113,10 @@ public class CesarCipherTest {
                 ()->{cesarCipher.decipher(parametro[0]);} );
     }
 
-
     @Test
-    public void cipherTestWith2ParametersOk(){
+    public void cipherTestWith2Parameters26Ok(){
         //Arrange
-        String parametro = "Hola";
-        String esperado = "Cesar Cipher:Hrod";
-        //Act
-        String resultado = cesarCipherWith2Parameters.cipher(parametro);
-        //Assert
-        Assert.assertEquals(esperado, "Cesar Cipher:"+resultado);
-    }
-
-    @Test
-    public void cipherTestWith2Parameters2Ok(){
-        //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher(3,"");
+        CesarCipher cesarCipherWith2Parameters = new CesarCipher(26,"abcdefghijklmnopqrstuvwxyz");
         String parametro = "Hola";
         String esperado = "Cesar Cipher:Hola";
         //Act
@@ -148,24 +126,11 @@ public class CesarCipherTest {
     }
 
     @Test
-    public void cipherTestWith2NumericParametersOk(){
+    public void cipherTestWith2ParametersEmptyAlphabetOk(){
         //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher(3,"123456789");
+        CesarCipher cesarCipherWith2Parameters = new CesarCipher(8,"");
         String parametro = "Hola";
         String esperado = "Cesar Cipher:Hola";
-        //Act
-        String resultado = cesarCipherWith2Parameters.cipher(parametro);
-        //Assert
-        Assert.assertEquals(esperado, "Cesar Cipher:"+resultado);
-    }
-
-
-    @Test
-    public void cipherTestWith2ParametersWith10Ok(){
-        //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher(10,"abcdefghijklmnopqrstuvwxyz");
-        String parametro = "Hola";
-        String esperado = "Cesar Cipher:Hyvk";
         //Act
         String resultado = cesarCipherWith2Parameters.cipher(parametro);
         //Assert
