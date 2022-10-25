@@ -2,82 +2,29 @@ package roo2;
 
 //import roo2.Cipher;
 
-public class  VigenereCipher implements Cipher {
-    char[] alphabet;
-    CharRing keyword;
+public class  VigenereCipher extends Complement { CharRing keyword;
+
     public  VigenereCipher(String inputAlphabet, String kword){
-        alphabet = new char[inputAlphabet.length()];
-        inputAlphabet.getChars(0,inputAlphabet.length(), alphabet, 0);
+        super(inputAlphabet);
         setKeyword(kword);
     };
 
-    public  VigenereCipher() {
-        
-        String inputAlphabet = "abcdefghijklmnopqrstuvwxyz";
-        alphabet = new char[inputAlphabet.length()];
-        inputAlphabet.getChars(0,inputAlphabet.length(), alphabet, 0);
+    public VigenereCipher() {
+        super("abcdefghijklmnopqrstuvwxyz");
         keyword = new CharRing("a");
     };
 
-    public String cipher(String inputText){
-        char[] result = new char[inputText.length()] ;
-        inputText.getChars(0, inputText.length(), result, 0);
 
-        for (int idx=0; idx < result.length; idx++)
-            result[idx]=cipherChar(result[idx]);
-        return new String(result); 
-    }; 
-
-    public String decipher(String inputText){
-        char[] result = new char[inputText.length()] ;
-        inputText.getChars(0, inputText.length(), result, 0);
-
-        for (int idx=0; idx < result.length; idx++)
-            result[idx]=decipherChar(result[idx]);        
-        return new String(result); 
-    }; 
-
-    private char cipherChar( char inputChar){
-        int offset;
-        char result;
-        
+    protected char cipherChar( char inputChar){
         int idx=java.util.Arrays.binarySearch(alphabet,inputChar);
-        
-        if(idx <0){
-            result= inputChar;
-        }
-        else{ offset = idx + this.currentOffset();
-            if(offset<alphabet.length){
-                result= alphabet[offset];
-            }
-            else{
-                result= alphabet[offset - alphabet.length];
-            }
-        }
-        return result;
+        return this.offset(idx,inputChar,currentOffset());
 
     };
 
 
-    private char decipherChar(char inputChar){
-        int offset;
-        char result;
+    protected char decipherChar(char inputChar){
         int idx=java.util.Arrays.binarySearch(alphabet,inputChar);
-        
-        if(idx <0){
-            result =inputChar;
-        }
-        else{ 
-            offset = idx - this.currentOffset();
-            
-            if(offset>=0){
-                result= alphabet[offset];
-            }
-            else{
-                result= alphabet[ alphabet.length + offset];
-            }
-        }
-        return result;
+        return this.deoffset(idx,inputChar,currentOffset());
     };
     public void setKeyword(String srcString){
         keyword = new CharRing(srcString);
