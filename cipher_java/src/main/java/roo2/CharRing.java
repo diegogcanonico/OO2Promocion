@@ -2,7 +2,7 @@ package roo2;
 
 //import roo2.Cipher;
 
-public class  CharRing {
+public class  CharRing implements IndexGenerator{
     char[] source;
     int idx;
     
@@ -12,7 +12,7 @@ public class  CharRing {
         idx = 0;
     };
 
-    public char next( ){
+    public Character next( ){
         char result;
         if(idx >= source.length)
             idx=0;

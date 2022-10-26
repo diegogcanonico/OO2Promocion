@@ -24,14 +24,40 @@ public class RailFenceCipherTest {
     }
 
     @Test
-    public void cipherTestNotOk(){
+    public void cipherTestWithRailCountGreaterThanWorldLengthOk(){
         //Arrange
+        RailFenceCipher rail = new RailFenceCipher(100);
         String parametro = "Hola";
-        String esperado = "Cesar Cipher:Hloaa";
+        String esperado = "Hola";
         //Act
-        String resultado = railFenceCipher.cipher(parametro);
+        String resultado = rail.cipher(parametro);
         //Assert
-        Assert.assertNotEquals(esperado, "Cesar Cipher:"+resultado);
+        Assert.assertEquals(esperado, resultado);
+    }
+
+    @Test
+    public void cipherTestWorldLength3TimesHigherThanRailAnd2RailCountOk(){
+        //Arrange
+        RailFenceCipher rail = new RailFenceCipher(2);
+        String parametro = "Camino";
+        String esperado = "Cmnaio";
+        //Act
+        String resultado = rail.cipher(parametro);
+        //Assert
+        Assert.assertEquals(esperado, resultado);
+    }
+
+
+    @Test
+    public void cipherTestWorldLengthHigherThanRailAnd2RailCountWithBlankSpaceOk(){
+        //Arrange
+        RailFenceCipher rail = new RailFenceCipher(2);
+        String parametro = "El Camino";
+        String esperado = "E aiolCmn";
+        //Act
+        String resultado = rail.cipher(parametro);
+        //Assert
+        Assert.assertEquals(esperado, resultado);
     }
 
     @Test
@@ -59,11 +85,69 @@ public class RailFenceCipherTest {
     public void decipherTestOk(){
         //Arrange
         String parametro = "Hola";
-        String esperado = "Hola";
+        String esperado = "Hloa";
         //Act
         String resultado = railFenceCipher.decipher(parametro);
         //Assert
         Assert.assertEquals(esperado, resultado);
+    }
+
+    @Test
+    public void decipherTestWithRailCountGreaterThanWorldLengthOk(){
+        //Arrange
+        RailFenceCipher rail = new RailFenceCipher(100);
+        String parametro = "Hola";
+        String esperado = "Hola";
+        //Act
+        String resultado = rail.decipher(parametro);
+        //Assert
+        Assert.assertEquals(esperado, resultado);
+    }
+
+    @Test
+    public void decipherTestWorldLength3TimesHigherThanRailAnd2RailCountOk(){
+        //Arrange
+        RailFenceCipher rail = new RailFenceCipher(2);
+        String esperado = "Camino";
+        String parametro = "Cmnaio";
+        //Act
+        String resultado = rail.decipher(parametro);
+        //Assert
+        Assert.assertEquals(esperado, resultado);
+    }
+
+
+    @Test
+    public void decipherTestWorldLengthHigherThanRailAnd2RailCountWithBlankSpaceOk(){
+        //Arrange
+        RailFenceCipher rail = new RailFenceCipher(2);
+        String esperado = "El Camino";
+        String parametro = "E aiolCmn";
+        //Act
+        String resultado = rail.decipher(parametro);
+        //Assert
+        Assert.assertEquals(esperado, resultado);
+    }
+
+    @Test
+    public void decipherTestWith1RailCountOk(){
+        //Arrange
+        RailFenceCipher railFenceCipher2 = new RailFenceCipher(1);
+        String parametro = "Hola";
+        String esperado = "Hola";
+        //Act
+        String resultado = railFenceCipher2.decipher(parametro);
+        //Assert
+        Assert.assertEquals(esperado, resultado);
+    }
+
+    @Test
+    public void decipherTestWithNegativeRailCountOk(){
+        //Arrange
+        //Act
+        //Assert
+        Assert.assertThrows(NegativeArraySizeException.class,
+                ()->{new RailFenceCipher(-10);} );
     }
 
 

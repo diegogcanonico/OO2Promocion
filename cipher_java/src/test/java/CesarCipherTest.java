@@ -53,11 +53,11 @@ public class CesarCipherTest {
     @Test
     public void cipherTestNotOkWithEmptyArray(){
         //Arrange
-        String[] parametro = new String[1];
+        String parametro = null;
         //Act
         //Assert
         Assert.assertThrows(NullPointerException.class,
-                ()->{cesarCipher.cipher(parametro[0]);} );
+                ()->{cesarCipher.cipher(parametro);} );
     }
 
     @Test
@@ -101,16 +101,6 @@ public class CesarCipherTest {
         //Assert
         Assert.assertThrows(NullPointerException.class,
                 ()->{cesarCipher.decipher(parametro);} );
-    }
-
-    @Test
-    public void decipherTestNotOkWithEmptyArray(){
-        //Arrange
-        String[] parametro = new String[1];
-        //Act
-        //Assert
-        Assert.assertThrows(NullPointerException.class,
-                ()->{cesarCipher.decipher(parametro[0]);} );
     }
 
     @Test

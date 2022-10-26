@@ -2,26 +2,29 @@ package roo2;
 
 //import roo2.Cipher;
 
-public class  BouncingIndex {
+public class  BouncingIndex implements IndexGenerator{
     int maxSize;
     int idx;
+
+    Boolean check = false;
     
     public  BouncingIndex(int size){
         maxSize= size;
         idx = 0;
     };
 
-    public int next( ){
+    public Integer next( ){
         int result;
-        
-        if (idx < maxSize){
-            result = idx++;
-            }
-        else { idx = 0;  
-            result =  idx++;
-        }
-        
-        return result;            
+        if(maxSize != 1) {
+            if (idx == 0 || idx == maxSize - 1)
+                check = !check;
+            result = idx;
+            if (check)
+                idx++;
+            else
+                idx--;
+            return result;
+        } else return 0;
     };
 
 }
