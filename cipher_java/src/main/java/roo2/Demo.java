@@ -94,17 +94,22 @@ public class Demo {
                         +"2. No. \n"
                         +"Seleccione una opción: "
                 );
-                int respuesta = lectura.nextInt();
-                if (respuesta ==1){
+                if (lectura.nextInt() ==1){
                     System.out.println("Ingrese el primer parámetro de tipo String");
-                    parameterList.add(lectura.nextLine());
+                    lectura = new Scanner(System.in);
+                    String param1 = lectura.nextLine();
+                    parameterList.add(param1);
                     System.out.println("Ingrese el segundo parámetro de tipo String");
-                    parameterList.add(lectura.nextLine());
+                    lectura = new Scanner(System.in);
+                    String param2 = lectura.nextLine();
+                    parameterList.add(param2);
                 }
                 else{
                     System.out.println("Ingrese el primer parámetro de tipo Integer");
+                    lectura = new Scanner(System.in);
                     parameterList.add(lectura.nextInt());
                     System.out.println("Ingrese el segundo parámetro de tipo String");
+                    lectura = new Scanner(System.in);
                     parameterList.add(lectura.nextLine());
                     parameterList.add("Tiene un entero y un string");
                 }
