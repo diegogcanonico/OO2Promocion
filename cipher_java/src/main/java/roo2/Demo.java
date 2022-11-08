@@ -67,7 +67,11 @@ public class Demo {
                         +"4. Salir del programa. \n"
                         +"Seleccione una opción: "
         );
-        return lectura.nextInt();
+        int valor = lectura.nextInt();
+        if (valor <= 0 || valor >4)
+            System.out.println("Opción incorrecta. Recuerde ingresar 1 para Cesar, 2 para Vigenere y 3 para Rail Fence o 4 para cerrar.");
+            preguntaPorOpcion();
+        return valor;
     }
 
     public static List<Object> preguntaPorParametros(Integer pregunta1){
@@ -92,42 +96,46 @@ public class Demo {
                     break;
         }
         int cantParametros= lectura.nextInt();
-        switch (cantParametros){
-            case 0: break;
-            case 1:
-                System.out.println("Ingrese el parámetro: ");
-                parameterList.add(lectura.nextInt());
-                break;
-            case 2:
-                System.out.println("¿Los dos parámetros son de tipo String?: \n"
-                        +"-------------->\n"
-                        +"1. Si. \n"
-                        +"2. No. \n"
-                        +"Seleccione una opción: "
-                );
-                if (lectura.nextInt() ==1){
-                    System.out.println("Ingrese el primer parámetro de tipo String");
-                    lectura = new Scanner(System.in);
-                    String param1 = lectura.nextLine();
-                    parameterList.add(param1);
-                    System.out.println("Ingrese el segundo parámetro de tipo String");
-                    lectura = new Scanner(System.in);
-                    String param2 = lectura.nextLine();
-                    parameterList.add(param2);
-                }
-                else{
-                    System.out.println("Ingrese el primer parámetro de tipo Integer");
-                    lectura = new Scanner(System.in);
-                    parameterList.add(lectura.nextInt());
-                    System.out.println("Ingrese el segundo parámetro de tipo String");
-                    lectura = new Scanner(System.in);
-                    parameterList.add(lectura.nextLine());
-                    parameterList.add("Tiene un entero y un string");
-                }
-            default:
-                System.out.println("Opción incorrecta. Recuerde ingresar las opciones dadas por el sistema");
-                break;
+        if (cantParametros > 3 || cantParametros < 0) {
+            System.out.println("Opción incorrecta. Recuerde ingresar las opciones dadas por el sistema");
+            preguntaPorParametros(pregunta1);
         }
+            switch (cantParametros){
+                case 0: break;
+                case 1:
+                    System.out.println("Ingrese el parámetro: ");
+                    parameterList.add(lectura.nextInt());
+                    break;
+                case 2:
+                    System.out.println("¿Los dos parámetros son de tipo String?: \n"
+                            +"-------------->\n"
+                            +"1. Si. \n"
+                            +"2. No. \n"
+                            +"Seleccione una opción: "
+                    );
+                    if (lectura.nextInt() ==1){
+                        System.out.println("Ingrese el primer parámetro de tipo String");
+                        lectura = new Scanner(System.in);
+                        String param1 = lectura.nextLine();
+                        parameterList.add(param1);
+                        System.out.println("Ingrese el segundo parámetro de tipo String");
+                        lectura = new Scanner(System.in);
+                        String param2 = lectura.nextLine();
+                        parameterList.add(param2);
+                    }
+                    else{
+                        System.out.println("Ingrese el primer parámetro de tipo Integer");
+                        lectura = new Scanner(System.in);
+                        parameterList.add(lectura.nextInt());
+                        System.out.println("Ingrese el segundo parámetro de tipo String");
+                        lectura = new Scanner(System.in);
+                        parameterList.add(lectura.nextLine());
+                        parameterList.add("Tiene un entero y un string");
+                    }
+                default:
+                    System.out.println("Opción incorrecta. Recuerde ingresar las opciones dadas por el sistema");
+                    break;
+            }
         return parameterList;
     }
 
