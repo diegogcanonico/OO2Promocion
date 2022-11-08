@@ -25,5 +25,13 @@ public class  CesarCipher extends Complement {
     protected char decipherChar( char inputChar){
         int idx=java.util.Arrays.binarySearch(alphabet,inputChar);
         return this.deoffset(idx,inputChar,jump);
-    };
+    }
+
+    @Override
+    protected void resetIndx() {
+    }
+
+    ;
+
+
 }

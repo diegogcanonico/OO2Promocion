@@ -14,9 +14,9 @@ public class Demo {
         List<Object> pregunta2;
         do {
             pregunta1 = preguntaPorOpcion();
-            if(pregunta1 == 4)
+            if(pregunta1 == 4 )
                 break;
-            pregunta2 = preguntaPorParametros();
+            pregunta2 = preguntaPorParametros(pregunta1);
             Application app = configureApplication(pregunta1, pregunta2);
             System.out.println("Ingrese una cadena a cifrar: ");
             String palabra = ingresoTeclado.nextLine();
@@ -47,8 +47,9 @@ public class Demo {
             case 4:
                 System.out.println("Cerrando programa.");
                 break;
-            default:
+            default:{
                 System.out.println("Opción incorrecta. Recuerde ingresar 1 para Cesar, 2 para Vigenere y 3 para Rail Fence o 4 para cerrar.");
+                break;}
             }
         System.out.println("\n");
         app = new Application(factory, parametros);
@@ -69,20 +70,30 @@ public class Demo {
         return lectura.nextInt();
     }
 
-    public static List<Object> preguntaPorParametros(){
+    public static List<Object> preguntaPorParametros(Integer pregunta1){
         List<Object> parameterList = new ArrayList<>();
-        System.out.println(
-                "Ingrese la opci+on para la cantidad de parametros que va a utilizar\n"
-                        +"-------------->\n"
-                        +"0. Sin parámetros. \n"
-                        +"1. Con un parámetro. \n"
-                        +"2. Con dos parámetros. \n"
-                        +"Seleccione una opción: "
-        );
+        System.out.println("Ingrese la opcion para la cantidad de parametros que va a utilizar\n");
+        switch (pregunta1) {
+            case 1:System.out.println(
+                "-------------->\n"
+                +"1. Con un parámetro. \n"
+                +"2. Con dos parámetros. \n"
+                +"Seleccione una opción: ");
+                break;
+            case 2:System.out.println(
+                     "-------------->\n"
+                     +"0. Sin parámetros. \n"
+                     +"2. Con dos parámetros. \n"
+                     +"Seleccione una opción: ");
+                break;
+            case 3:System.out.println(
+                    "-------------->\n"
+                    +"1. Con un parámetro. \n");
+                    break;
+        }
         int cantParametros= lectura.nextInt();
         switch (cantParametros){
-            case 0:
-                break;
+            case 0: break;
             case 1:
                 System.out.println("Ingrese el parámetro: ");
                 parameterList.add(lectura.nextInt());
@@ -113,6 +124,9 @@ public class Demo {
                     parameterList.add(lectura.nextLine());
                     parameterList.add("Tiene un entero y un string");
                 }
+            default:
+                System.out.println("Opción incorrecta. Recuerde ingresar las opciones dadas por el sistema");
+                break;
         }
         return parameterList;
     }

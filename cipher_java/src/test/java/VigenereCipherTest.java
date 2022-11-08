@@ -32,7 +32,7 @@ public class VigenereCipherTest {
         /* Descipher
         se renicia el setup por el puntero del CharRing, sino no da el resultado
          */
-        setupTest();
+        //setupTest();
         this.result = this.vigenere.decipher(valor);
         assertEquals(this.cadena, this.result);
     }

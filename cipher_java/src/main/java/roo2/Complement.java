@@ -14,6 +14,8 @@ public abstract class Complement implements Cipher{
 
     protected abstract char decipherChar( char inputChar);
 
+    protected abstract void resetIndx();
+
 
     public String cipher(String inputText){
         char[] result = new char[inputText.length()] ;
@@ -21,6 +23,7 @@ public abstract class Complement implements Cipher{
 
         for (int idx=0; idx < result.length; idx++)
             result[idx]=cipherChar(result[idx]);
+        this.resetIndx();
         return new String(result);
     };
 
