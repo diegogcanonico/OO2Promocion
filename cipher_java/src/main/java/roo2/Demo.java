@@ -58,19 +58,22 @@ public class Demo {
 
 
     public static int  preguntaPorOpcion(){
-        System.out.println(
-                "Menú de opciones\n"
-                        +"-------------->\n"
-                        +"1. Solicitar uso de Cesar Cipher. \n"
-                        +"2. Solicitar uso de Vigenere Cipher. \n"
-                        +"3. Solicitar uso de Rail Fence Cipher. \n"
-                        +"4. Salir del programa. \n"
-                        +"Seleccione una opción: "
-        );
-        int valor = lectura.nextInt();
-        if (valor <= 0 || valor >4)
-            System.out.println("Opción incorrecta. Recuerde ingresar 1 para Cesar, 2 para Vigenere y 3 para Rail Fence o 4 para cerrar.");
-            preguntaPorOpcion();
+        int valor = 0;
+        while (valor == 0) {
+            System.out.println(
+                    "Menú de opciones\n"
+                            + "-------------->\n"
+                            + "1. Solicitar uso de Cesar Cipher. \n"
+                            + "2. Solicitar uso de Vigenere Cipher. \n"
+                            + "3. Solicitar uso de Rail Fence Cipher. \n"
+                            + "4. Salir del programa. \n"
+                            + "Seleccione una opción: "
+            );
+            valor = lectura.nextInt();
+            if (valor <= 0 || valor > 4){
+                System.out.println("Opción incorrecta. Recuerde ingresar 1 para Cesar, 2 para Vigenere y 3 para Rail Fence o 4 para cerrar.");
+                valor=0;}
+        }
         return valor;
     }
 
