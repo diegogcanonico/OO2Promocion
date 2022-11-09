@@ -4,11 +4,18 @@ public interface CipherFactory {
 
     public Cipher createCipher(int T);
 
-    public Cipher createCipher();
 
-    public Cipher createCipher(String inputAlphabet, String kword);
+    public default Cipher createCipher(){
+        return new VigenereCipher();
+    }
 
-    public Cipher createCipher(int number, String inputAlphabet);
+    public default Cipher createCipher(String inputAlphabet, String kword){
+        return new VigenereCipher(inputAlphabet, kword);
+    }
+
+    public default Cipher createCipher(int number, String inputAlphabet){
+        return new CesarCipher(number, inputAlphabet);
+    }
 
 
 }
