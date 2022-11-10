@@ -13,7 +13,7 @@ public class CesarCipherTest {
     @BeforeEach
     void setUp(){
         cesarCipher = new CesarCipher(3);
-        cesarCipherWith2Parameters = new CesarCipher(3, "abcdefghijklmnopqrstuvwxyz");
+        cesarCipherWith2Parameters = new CesarCipher("abcdefghijklmnopqrstuvwxyz", 3);
     }
 
 
@@ -106,7 +106,7 @@ public class CesarCipherTest {
     @Test
     public void cipherTestWith2Parameters26Ok(){
         //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher(26,"abcdefghijklmnopqrstuvwxyz");
+        CesarCipher cesarCipherWith2Parameters = new CesarCipher("abcdefghijklmnopqrstuvwxyz",26);
         String parametro = "Hola";
         String esperado = "Cesar Cipher:Hola";
         //Act
@@ -118,7 +118,7 @@ public class CesarCipherTest {
     @Test
     public void cipherTestWith2ParametersEmptyAlphabetOk(){
         //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher(8,"");
+        CesarCipher cesarCipherWith2Parameters = new CesarCipher("",8);
         String parametro = "Hola";
         String esperado = "Cesar Cipher:Hola";
         //Act
@@ -130,7 +130,7 @@ public class CesarCipherTest {
     @Test
     public void cipherTestWith2ParametersNotOk(){
         //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher(-10,"abcdefghijklmnopqrstuvwxyz");
+        CesarCipher cesarCipherWith2Parameters = new CesarCipher("abcdefghijklmnopqrstuvwxyz",-10);
         String parametro = "Hola";
         //Act
         //Assert
