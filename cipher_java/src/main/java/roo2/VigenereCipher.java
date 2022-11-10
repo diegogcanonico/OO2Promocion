@@ -2,7 +2,8 @@ package roo2;
 
 //import roo2.Cipher;
 
-public class  VigenereCipher extends Complement { CharRing keyword;
+public class  VigenereCipher extends Complement {
+    CharRing keyword;
 
     public  VigenereCipher(String inputAlphabet, String kword){
         super(inputAlphabet);
@@ -14,7 +15,6 @@ public class  VigenereCipher extends Complement { CharRing keyword;
         keyword = new CharRing("a");
     };
 
-
     protected char cipherChar( char inputChar){
         int idx=java.util.Arrays.binarySearch(alphabet,inputChar);
         return this.offset(idx,inputChar,currentOffset());
@@ -25,7 +25,14 @@ public class  VigenereCipher extends Complement { CharRing keyword;
     protected char decipherChar(char inputChar){
         int idx=java.util.Arrays.binarySearch(alphabet,inputChar);
         return this.deoffset(idx,inputChar,currentOffset());
-    };
+    }
+
+    @Override
+    protected void resetIndx() {
+        this.keyword.resetIdx();
+    }
+
+    ;
     public void setKeyword(String srcString){
         keyword = new CharRing(srcString);
     }

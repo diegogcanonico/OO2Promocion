@@ -15,9 +15,13 @@ public class  CharRing implements IndexGenerator{
     public Character next( ){
         char result;
         if(idx >= source.length)
-            idx=0;
+            this.resetIdx();
         return source[idx++];     
         
     };
+
+    public void resetIdx(){
+        this.idx = 0;
+    }
 
 }
