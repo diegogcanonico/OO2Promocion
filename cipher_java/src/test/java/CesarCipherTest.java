@@ -1,7 +1,6 @@
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import roo2.CesarCipher;
 
 
 public class CesarCipherTest {

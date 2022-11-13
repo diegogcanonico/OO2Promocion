@@ -1,4 +1,3 @@
-import roo2.CesarCipher;
 import roo2.RailFenceCipher;
 import roo2.VigenereCipher;
 
@@ -10,7 +9,7 @@ public class ciphercmd {
     public static void main(String[] args)
         throws IOException
     {
-        final CesarCipher cesar = new CesarCipher(3);
+        //final CesarCipher cesar = new CesarCipher(3);
         final VigenereCipher vigenere = new VigenereCipher();
         final RailFenceCipher railFence = new RailFenceCipher(2);
 
@@ -22,7 +21,7 @@ public class ciphercmd {
         String name = reader.readLine();
  
         // Printing the read line
-        System.out.println("Cesar Cipher:"+cesar.cipher(name));
+        //System.out.println("Cesar Cipher:"+cesar.cipher(name));
         vigenere.setKeyword("abcdefghijklmnopqrstuvwxyz");
         System.out.println("Vigener Cipher:"+vigenere.cipher(name));
         System.out.println("RailFence Cipher:"+railFence.cipher(name));
