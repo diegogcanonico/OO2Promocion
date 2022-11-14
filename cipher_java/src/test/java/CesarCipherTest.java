@@ -1,18 +1,22 @@
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import roo2.CipherFactory;
+import roo2.VigenereCipher;
+import roo2.Cipher;
+
+
 
 
 public class CesarCipherTest {
-    private CesarCipher cesarCipher;
-    private CesarCipher cesarCipherWith2Parameters;
-
+    private CipherFactory factory;
+    private Cipher cesarCipher;
 
 
     @BeforeEach
     void setUp(){
-        cesarCipher = new CesarCipher(3);
-        cesarCipherWith2Parameters = new CesarCipher("abcdefghijklmnopqrstuvwxyz", 3);
+        factory = new CipherFactory();
+        cesarCipher = factory.getCesarCipher("abcdefghijklmnopqrstuvwxyz", 3);
     }
 
 
@@ -105,7 +109,7 @@ public class CesarCipherTest {
     @Test
     public void cipherTestWith2Parameters26Ok(){
         //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher("abcdefghijklmnopqrstuvwxyz",26);
+        Cipher cesarCipherWith2Parameters =factory.getCesarCipher("abcdefghijklmnopqrstuvwxyz",26);
         String parametro = "Hola";
         String esperado = "Cesar Cipher:Hola";
         //Act
@@ -117,7 +121,7 @@ public class CesarCipherTest {
     @Test
     public void cipherTestWith2ParametersEmptyAlphabetOk(){
         //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher("",8);
+        Cipher cesarCipherWith2Parameters =factory.getCesarCipher("",8);
         String parametro = "Hola";
         String esperado = "Cesar Cipher:Hola";
         //Act
@@ -129,12 +133,10 @@ public class CesarCipherTest {
     @Test
     public void cipherTestWith2ParametersNotOk(){
         //Arrange
-        CesarCipher cesarCipherWith2Parameters = new CesarCipher("abcdefghijklmnopqrstuvwxyz",-10);
-        String parametro = "Hola";
         //Act
         //Assert
-        Assert.assertThrows(ArrayIndexOutOfBoundsException.class,
-                ()->{cesarCipherWith2Parameters.cipher(parametro);} );
+        Assert.assertThrows(StringIndexOutOfBoundsException.class,
+                ()->{factory.getCesarCipher("abcdefghijklmnopqrstuvwxyz",-10);} );
     }
 
 }
