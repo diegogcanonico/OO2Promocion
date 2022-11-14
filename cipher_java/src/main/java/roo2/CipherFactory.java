@@ -3,16 +3,22 @@ package roo2;
 public class CipherFactory {
 
     public Cipher getCesarCipher(String alfabeto, int salto){
-        int offset = salto;
+        String clave;
         int longitudAlfabeto = alfabeto.length();
-        if (offset >= longitudAlfabeto) {
-            while (offset >= longitudAlfabeto) {
-                offset = offset - longitudAlfabeto;
+        if(longitudAlfabeto > 0) {
+            int offset = salto;
+            if (offset >= longitudAlfabeto) {
+                while (offset >= longitudAlfabeto) {
+                    offset = offset - longitudAlfabeto;
+                }
             }
-        }
-        String clave = String.valueOf(alfabeto.charAt(offset));
-        for (int j = 0; j <= 25; j++) {
-            clave += alfabeto.charAt(offset);
+            clave = String.valueOf(alfabeto.charAt(offset));
+            for (int j = 0; j <= 25; j++) {
+                clave += alfabeto.charAt(offset);
+            }
+        } else {
+            alfabeto= "abcdefghijklmnopqrstuvwxyz";
+            clave = "a";
         }
         return new VigenereCipher(alfabeto, clave);
     }
