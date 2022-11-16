@@ -23,8 +23,8 @@ public class CesarCipherTest {
     @Test
     public void cipherTestOk(){
         //Arrange
-        String parametro = "Hola";
-        String esperado = "Cesar Cipher:Hrod";
+        String parametro = "zeta";
+        String esperado = "Cesar Cipher:chwd";
         //Act
         String resultado = cesarCipher.cipher(parametro);
         //Assert

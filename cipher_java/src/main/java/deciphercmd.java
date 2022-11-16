@@ -8,7 +8,6 @@ public class deciphercmd {
     public static void main(String[] args)
         throws IOException
     {
-        //final CesarCipher cesar = new CesarCipher(3);
         final VigenereCipher vigenere = new VigenereCipher();
 
         // Enter data using BufferReader
@@ -19,7 +18,6 @@ public class deciphercmd {
         String name = reader.readLine();
  
         // Printing the read line
-       // System.out.println("Cesar Cipher:"+cesar.decipher(name));
         vigenere.setKeyword("abcdefghijklmnopqrstuvwxyz");
         System.out.println("Vigener Cipher:"+vigenere.decipher(name));
     }

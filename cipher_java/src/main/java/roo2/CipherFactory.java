@@ -13,7 +13,7 @@ public class CipherFactory {
                 }
             }
             clave = String.valueOf(alfabeto.charAt(offset));
-            for (int j = 0; j <= 25; j++) {
+            for (int j = 0; j <= alfabeto.length()-2; j++) {
                 clave += alfabeto.charAt(offset);
             }
         } else {

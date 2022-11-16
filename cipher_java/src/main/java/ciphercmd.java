@@ -9,7 +9,7 @@ public class ciphercmd {
     public static void main(String[] args)
         throws IOException
     {
-        //final CesarCipher cesar = new CesarCipher(3);
+
         final VigenereCipher vigenere = new VigenereCipher();
         final RailFenceCipher railFence = new RailFenceCipher(2);
 
@@ -22,7 +22,6 @@ public class ciphercmd {
  
         // Printing the read line
         //System.out.println("Cesar Cipher:"+cesar.cipher(name));
-        vigenere.setKeyword("abcdefghijklmnopqrstuvwxyz");
         System.out.println("Vigener Cipher:"+vigenere.cipher(name));
         System.out.println("RailFence Cipher:"+railFence.cipher(name));
     }

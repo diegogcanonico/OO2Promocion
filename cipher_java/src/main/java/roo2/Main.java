@@ -22,8 +22,8 @@ public class Main {
 
         System.out.println("----------------------------------------");
         System.out.println("Prueba de Cesar mediante Vigenere");
-        Cipher cesarConVigenere = factory.getCesarCipher("abcdefghijklmnopqrstuvwxyz", 54);
-        palabra = cesarConVigenere.cipher("hola");
+        Cipher cesarConVigenere = factory.getCesarCipher("abcd", 2);
+        palabra = cesarConVigenere.cipher("cada");
         System.out.println("La palabra cifrada es: " + palabra);
         System.out.println("La palabra descifrada es: " + cesarConVigenere.decipher(palabra));
     }
