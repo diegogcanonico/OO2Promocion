@@ -2,6 +2,7 @@ package roo2;
 
 public class Main {
     public static void main(String[] args) {
+
         CipherFactory factory = new CipherFactory();
         String palabra = "texto para cifrar";
         System.out.println("Prueba con Vigenere");
@@ -26,6 +27,19 @@ public class Main {
         palabra = cesarConVigenere.cipher("cada");
         System.out.println("La palabra cifrada es: " + palabra);
         System.out.println("La palabra descifrada es: " + cesarConVigenere.decipher(palabra));
+
+
+        System.out.println("----------------------------------------");
+        System.out.println("Prueba de Columnar Transposition Cipher");
+        System.out.println("La palabra clave es casino y la frase a cifrar es 'esto es objetos'");
+        ColumnarTranspositionCipher cipher = new ColumnarTranspositionCipher("casino");
+        String resultado = cipher.cipher("esto es objetos");
+        System.out.println("La frase cifrada es "+resultado);
+
+
+
+
+
     }
 }
 
