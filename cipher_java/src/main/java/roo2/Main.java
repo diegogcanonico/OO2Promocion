@@ -28,12 +28,20 @@ public class Main {
         System.out.println("La palabra cifrada es: " + palabra);
         System.out.println("La palabra descifrada es: " + cesarConVigenere.decipher(palabra));
 
-
+        /**
         System.out.println("----------------------------------------");
         System.out.println("Prueba de Columnar Transposition Cipher");
         System.out.println("La palabra clave es casino y la frase a cifrar es 'esto es objetos'");
         ColumnarTranspositionCipher cipher = new ColumnarTranspositionCipher("clave");
         String resultado = cipher.cipher("esto es objetos");
+        System.out.println("La frase cifrada es "+resultado);
+         **/
+
+        System.out.println("----------------------------------------");
+        System.out.println("Prueba de Columnar Transposition Cipher");
+        System.out.println("La palabra clave es sol y la frase a cifrar es hola juan");
+        Cipher cipher = factory.getColumnarTranspositionCipher("sol");
+        String resultado = cipher.cipher("hola juan");
         System.out.println("La frase cifrada es "+resultado);
 
 
