@@ -14,7 +14,7 @@ public class ColumnarTranspositionCipher implements Cipher{
     private String alfabeto = "abcdefghijklmnopqrstuvwxyz";
 
     public ColumnarTranspositionCipher(String keyword) {
-        if (this.isAlpha(keyword) || keyword.equals("") || keyword.equals(" ")) {
+        if (this.isAlpha(keyword)) {
             try {
                 if (keyword.length() <= 5) {
                     this.keyword = keyword;
@@ -56,15 +56,17 @@ public class ColumnarTranspositionCipher implements Cipher{
     }
 
     public String decipher(String messaje){
-        String mensajeEntrada = messaje.replace(" ","");
-        guardadoEntrada(mensajeEntrada);
-        int [] keywordOrder = busquedaPosiciones();
-        StringBuilder finalKeywordOrder = new StringBuilder();
-        for (int i = 0; i < keywordOrder.length; i++) {
-            finalKeywordOrder.append(keywordOrder[i]);
-        }
-        guardadoEntrada(mensajeEntrada);
-        return cifrado(finalKeywordOrder.toString());
+        if(!this.keyword.equals("") && !this.keyword.equals(" ") && this.keyword != null) {
+            String mensajeEntrada = messaje.replace(" ", "");
+            guardadoEntrada(mensajeEntrada);
+            int[] keywordOrder = busquedaPosiciones();
+            StringBuilder finalKeywordOrder = new StringBuilder();
+            for (int i = 0; i < keywordOrder.length; i++) {
+                finalKeywordOrder.append(keywordOrder[i]);
+            }
+            guardadoEntrada(mensajeEntrada);
+            return cifrado(finalKeywordOrder.toString());
+        } return messaje;
     }
 
     private int [] busquedaPosiciones() {

@@ -44,6 +44,13 @@ public class Main {
         String resultado = cipher.cipher("hola juan");
         System.out.println("La frase cifrada es "+resultado);
 
+        System.out.println("----------------------------------------");
+        System.out.println("Prueba de Columnar Transposition Cipher");
+        System.out.println("La palabra clave es sol y la frase a cifrar es hola juan");
+        cipher = factory.getColumnarTranspositionCipher("sol");
+        resultado = cipher.decipher("lohuja*na");
+        System.out.println("La frase cifrada es "+resultado);
+
 
 
 
