@@ -1,5 +1,6 @@
 package roo2;
 
+import javax.management.BadAttributeValueExpException;
 import java.util.Arrays;
 
 public class ColumnarTranspositionCipher implements Cipher{
@@ -8,31 +9,62 @@ public class ColumnarTranspositionCipher implements Cipher{
     private int [] keywordNumbers;
     private String keyword;
 
-    private StringBuilder salida;
-
     private int cantidadFilas;
 
     private String alfabeto = "abcdefghijklmnopqrstuvwxyz";
 
     public ColumnarTranspositionCipher(String keyword) {
-        try {
-            if ( keyword.length() <= 5) {
-                this.keyword = keyword;
-            } else {
-                throw new Exception("error en Keyword");
+        if (this.isAlpha(keyword) || keyword.equals("") || keyword.equals(" ")) {
+            try {
+                if (keyword.length() <= 5) {
+                    this.keyword = keyword;
+                } else {
+                    throw new Exception("error en Keyword");
+                }
+            } catch (Exception e) {
+                System.out.println("El largo del keyword excede el limite de 5 caracteres permitidos");
             }
-        } catch (Exception e) {
-            System.out.println("El largo del keyword excede el limite de 5 caracteres permitidos");
+        } else throw new IllegalArgumentException("La keyword ingresada contiene caracteres inválidos");
+    }
+
+    public boolean isAlpha(String s)
+    {
+        if (s == null) {
+            return false;
         }
+
+        for (int i = 0; i < s.length(); i++)
+        {
+            char c = s.charAt(i);
+            if (!(c >= 'A' && c <= 'Z') && !(c >= 'a' && c <= 'z')) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public String cipher(String messaje){
+        if(!this.keyword.equals("") && !this.keyword.equals(" ") && this.keyword != null) {
+            String mensajeEntrada = messaje.replace(" ", "");
+            guardadoEntrada(mensajeEntrada);
+            int[] keywordOrder = busquedaPosiciones();
+            String finalKeywordOrder = ordenamientoPosiciones(keywordOrder);
+            guardadoEntrada(mensajeEntrada);
+            return cifrado(finalKeywordOrder);
+        }
+        return messaje;
+    }
+
+    public String decipher(String messaje){
         String mensajeEntrada = messaje.replace(" ","");
         guardadoEntrada(mensajeEntrada);
         int [] keywordOrder = busquedaPosiciones();
-        String finalKeywordOrder = ordenamientoPosiciones(keywordOrder);
+        StringBuilder finalKeywordOrder = new StringBuilder();
+        for (int i = 0; i < keywordOrder.length; i++) {
+            finalKeywordOrder.append(keywordOrder[i]);
+        }
         guardadoEntrada(mensajeEntrada);
-        return cifrado(finalKeywordOrder);
+        return cifrado(finalKeywordOrder.toString());
     }
 
     private int [] busquedaPosiciones() {
@@ -56,14 +88,20 @@ public class ColumnarTranspositionCipher implements Cipher{
             cadenaPosiciones += (String.valueOf(keywordOrder[i]));
         }
         for(int i = 1; i< keywordOrder.length+1; i++){
-            cadenaResultado+=(cadenaPosiciones.indexOf(String.valueOf(i)));
+            cadenaResultado+=(cadenaPosiciones.indexOf(String.valueOf(i)))+1;
         }
         return cadenaResultado;
     }
 
     private void guardadoEntrada(String mensajeEntrada){
         int z = 0;
-        int relleno = this.keyword.length() - (mensajeEntrada.length() % this.keyword.length());
+        int relleno;
+        int diferencia = mensajeEntrada.length() % this.keyword.length();
+        if(diferencia == 0 ){
+            relleno = 0;
+        } else {
+            relleno = this.keyword.length() - (mensajeEntrada.length() % this.keyword.length());
+        }
         int totalCaracteres = mensajeEntrada.length() + relleno;
         this.cantidadFilas = (totalCaracteres) / this.keyword.length();
         this.entrada = new char[this.cantidadFilas][this.keyword.length()];
@@ -89,19 +127,12 @@ public class ColumnarTranspositionCipher implements Cipher{
         for(int i = 0; i < this.cantidadFilas; i ++){
             int z = 0;
             for(int j = 0; j < keyword.length(); j++){
-                textoCifrado += (String.valueOf(this.entrada[i][Integer.parseInt(String.valueOf(finalKeywordOrder.charAt(z)))]));
+                textoCifrado += (String.valueOf(this.entrada[i][Integer.parseInt(String.valueOf(finalKeywordOrder.charAt(z)))-1]));
                 z++;
             }
         }
         return textoCifrado;
     }
-
-
-    public String decipher(String inputText) {
-    return null;
-    }
-
-
 
 
 }
