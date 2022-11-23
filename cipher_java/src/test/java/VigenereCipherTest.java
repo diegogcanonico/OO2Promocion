@@ -29,10 +29,8 @@ public class VigenereCipherTest {
         result = this.vigenere2.cipher("codigo");
         assertEquals(valor, result);
 
-        /* Descipher
-        se renicia el setup por el puntero del CharRing, sino no da el resultado
-         */
-        //setupTest();
+        // Descipher
+
         this.result = this.vigenere.decipher(valor);
         assertEquals(this.cadena, this.result);
     }
@@ -85,10 +83,8 @@ public class VigenereCipherTest {
         this.result = this.vigenere2.cipher(this.cadena);
         assertEquals(this.valor, this.result);
 
-        /* Descipher
-        se renicia el setup por el puntero del CharRing, sino no da el resultado
-         */
-        setupTest();
+        //Descipher
+
         this.result = this.vigenere.decipher(this.valor);
         assertEquals(this.cadena, this.result);
 }
@@ -102,7 +98,7 @@ public class VigenereCipherTest {
         this.result = this.vigenere2.cipher(this.cadena);
         assertEquals(this.valor, this.result);
 
-        setupTest();
+        //Descipher
         this.result = this.vigenere.decipher(this.valor);
         assertEquals(this.cadena, this.result);
 }
@@ -112,12 +108,7 @@ public class VigenereCipherTest {
         valor = null;
         Assert.assertThrows(NullPointerException.class,()->{this.vigenere.cipher(valor);});
         Assert.assertThrows(NullPointerException.class,()->{this.vigenere2.cipher(valor);});
-        /*
-        resultado NullPointerException - se rompe en el metodo cipher cuando hace
-        char[] result = new char[inputText.length()]
-        El tema es que este valor nunca va a ser ingresado por el usuario, se testea ?
-        por teclado todo lo que se ingresa es un string
-         */
+
 
 
     }

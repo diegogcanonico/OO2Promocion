@@ -15,7 +15,15 @@ public class ColumnarTranspositionCipher implements Cipher{
     private String alfabeto = "abcdefghijklmnopqrstuvwxyz";
 
     public ColumnarTranspositionCipher(String keyword) {
-        this.keyword = keyword;
+        try {
+            if ( keyword.length() <= 5) {
+                this.keyword = keyword;
+            } else {
+                throw new Exception("error en Keyword");
+            }
+        } catch (Exception e) {
+            System.out.println("El largo del keyword excede el limite de 5 caracteres permitidos");
+        }
     }
 
     public String cipher(String messaje){

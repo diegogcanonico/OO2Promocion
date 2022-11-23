@@ -30,4 +30,8 @@ public class CipherFactory {
     public Cipher getRailFenceCipher(int rails){
         return new RailFenceCipher(rails);
     }
+
+    public Cipher getColumnarTranspositionCipher (String keyword){
+        return new ColumnarTranspositionCipher(keyword);
+    }
 }
