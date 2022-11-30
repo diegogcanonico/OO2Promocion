@@ -1,6 +1,6 @@
 package roo2;
 
-public abstract class Complement implements Cipher{
+public abstract class Complement extends DecoratorCipher implements Cipher{
 
     char[] alphabet;
 
@@ -18,13 +18,16 @@ public abstract class Complement implements Cipher{
 
 
     public String cipher(String inputText){
-        char[] result = new char[inputText.length()] ;
+        if ((this.cipherText!= null) && (this.cipherText.cipher(inputText) != " ")) {
+            inputText = this.cipherText.cipher(inputText);
+        }
+        char[] result = new char[inputText.length()];
         inputText.getChars(0, inputText.length(), result, 0);
-
-        for (int idx=0; idx < result.length; idx++)
-            result[idx]=cipherChar(result[idx]);
+        for (int idx = 0; idx < result.length; idx++)
+            result[idx] = cipherChar(result[idx]);
         this.resetIndx();
         return new String(result);
+
     };
 
     public String decipher(String inputText){

@@ -1,6 +1,6 @@
 package roo2;
 
-public class  RailFenceCipher implements Cipher {
+public class  RailFenceCipher extends DecoratorCipher  implements Cipher {
     String[] rails;
     BouncingIndex bIndex;
 
@@ -13,14 +13,17 @@ public class  RailFenceCipher implements Cipher {
     };
 
     public String cipher(String inputText){
+        if ((this.cipherText!= null) && (this.cipherText.cipher(inputText) != " ")) {
+            inputText = this.cipherText.cipher(inputText);
+        }
         String result = "";
         char inputChar[] = new char[inputText.length()];
-        inputText.getChars(0,inputText.length(), inputChar, 0);
+        inputText.getChars(0, inputText.length(), inputChar, 0);
         railsGenerator(inputText, inputChar);
-        for(int idx=0; idx < rails.length; idx++){
+        for (int idx = 0; idx < rails.length; idx++) {
             result += rails[idx];
         }
-        return result; 
+        return result;
     }
 
     private void railsGenerator(String inputText, char[] inputChar) {

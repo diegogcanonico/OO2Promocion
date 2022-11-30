@@ -2,7 +2,7 @@ package roo2;
 
 //import roo2.Cipher;
 
-public class  VigenereCipher extends Complement {
+public class  VigenereCipher extends Complement{
     CharRing keyword;
 
     public  VigenereCipher(String inputAlphabet, String kword){

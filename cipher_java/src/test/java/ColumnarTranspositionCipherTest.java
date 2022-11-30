@@ -83,7 +83,6 @@ public void keywordLong(){
 
         Assert.assertThrows(IllegalArgumentException.class,()->{factory.getColumnarTranspositionCipher("*&^%$");});
 
-
         Assert.assertThrows(IllegalArgumentException.class,()->{factory.getColumnarTranspositionCipher("12345");});
     }
 

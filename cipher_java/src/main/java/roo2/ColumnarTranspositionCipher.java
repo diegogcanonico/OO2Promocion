@@ -3,7 +3,7 @@ package roo2;
 import javax.management.BadAttributeValueExpException;
 import java.util.Arrays;
 
-public class ColumnarTranspositionCipher implements Cipher{
+public class ColumnarTranspositionCipher extends DecoratorCipher implements Cipher{
 
     private char [][] entrada;
     private int [] keywordNumbers;
@@ -44,7 +44,10 @@ public class ColumnarTranspositionCipher implements Cipher{
     }
 
     public String cipher(String messaje){
-        if(!this.keyword.equals("") && !this.keyword.equals(" ") && this.keyword != null) {
+        if ((this.cipherText!= null) && (this.cipherText.cipher(messaje) != " ")) {
+            messaje = this.cipherText.cipher(messaje);
+        }
+        if (!this.keyword.equals("") && !this.keyword.equals(" ") && this.keyword != null) {
             String mensajeEntrada = messaje.replace(" ", "");
             int[] keywordOrder = busquedaPosiciones();
             String finalKeywordOrder = ordenamientoPosiciones(keywordOrder);
