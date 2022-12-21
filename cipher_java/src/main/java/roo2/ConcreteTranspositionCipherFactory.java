@@ -10,15 +10,14 @@ public class ConcreteTranspositionCipherFactory extends CipherFactory{
 
     @Override
     public Cipher createCipher(String texto) {
-        parts = texto.trim().split("-");
+        parts = texto.split(",");
         part1 = parts[0];
         part2 = parts[1];
         if(part1.equals("RailFence") || part1.equals("railfence") || part1.equals("rail fence") || part1.equals("Rail fence") || part1.equals("rail") || part1.equals("Rail")){
-            this.getRailFenceCipher(Integer.valueOf(part2));
+            return this.getRailFenceCipher(Integer.valueOf(part2));
         } else {
-            this.getColumnarTranspositionCipher(part2);
+            return this.getColumnarTranspositionCipher(part2);
         }
-        return null;
     }
 
     public Cipher getRailFenceCipher(int rails){

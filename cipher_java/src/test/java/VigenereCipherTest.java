@@ -6,32 +6,33 @@ import roo2.*;
 
 public class VigenereCipherTest {
 
-    private VigenereCipher vigenere;
-    private VigenereCipher vigenere2;
-    private String inputAlphabet = "abcdefghijklmnopqrstuvwxyz";
     private String valor;
     private String result;
     private String cadena;
+    private ConcreteSubstitutionCipherFactory factory;
+    private Cipher vigenere;
+    private Cipher vigenere2;
 
 @BeforeEach
     public void setupTest() {
-        this.vigenere = new VigenereCipher();
-        this.vigenere.setKeyword(this.inputAlphabet);
-        this.vigenere2 = new VigenereCipher(inputAlphabet,inputAlphabet);
+        factory = new ConcreteSubstitutionCipherFactory();
+        vigenere = factory.createCipher("vigenere, , ");
+        vigenere2 = factory.createCipher("vigenere,abcdefghijklmnopqrstuvwxyz,abcdefghijklmnopqrstuvwxyz");
     }
 
 @Test
     public void correctValueTest(){
-        this.valor = "cpflkt";
+        this.valor = "codigo";
         this.cadena = "codigo";
-        this.result = this.vigenere.cipher(this.cadena);
+        this.result = vigenere.cipher(this.cadena);
         assertEquals(valor, result);
-        result = this.vigenere2.cipher("codigo");
+        result = vigenere2.cipher("codigo");
+        this.valor = "cpflkt";
         assertEquals(valor, result);
 
         // Descipher
 
-        this.result = this.vigenere.decipher(valor);
+        this.result = this.vigenere2.decipher(valor);
         assertEquals(this.cadena, this.result);
     }
 
@@ -78,9 +79,10 @@ public class VigenereCipherTest {
     public void sameLetters(){
         this.valor = "abcdef";
         this.cadena = "aaaaaa";
-        this.result = this.vigenere.cipher(this.cadena);
-        assertEquals(this.valor, this.result);
         this.result = this.vigenere2.cipher(this.cadena);
+        assertEquals(this.valor, this.result);
+        this.valor = "aaaaaa";
+        this.result = this.vigenere.cipher(this.cadena);
         assertEquals(this.valor, this.result);
 
         //Descipher

@@ -1,10 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import roo2.Cipher;
-import roo2.CipherFactory;
-import roo2.ColumnarTranspositionCipher;
-import roo2.RailFenceCipher;
+import roo2.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,16 +11,14 @@ public class ColumnarTranspositionCipherTest {
     private CipherFactory factory;
     private Cipher columnarTranspositionCipher;
 
-    private Cipher columnarTransposition;
-
     private String valor;
     private String resultado;
     private String cadena;
 
 
-@BeforeEach
+    @BeforeEach
     void setupTest(){
-        this.factory = new CipherFactory();
+        factory = new ConcreteTranspositionCipherFactory();
         this.cadena = "esto es objetos";
 
 }
@@ -31,7 +26,7 @@ public class ColumnarTranspositionCipherTest {
 @Test
     public void correctValueTest(){
         setupTest();
-        this.columnarTranspositionCipher = factory.getColumnarTranspositionCipher("clave");
+        columnarTranspositionCipher = factory.createCipher("columnar,clave");
         this.resultado = this.columnarTranspositionCipher.cipher(cadena);
         assertEquals(resultado,"teesobseojst*o*");
 
@@ -44,7 +39,7 @@ public class ColumnarTranspositionCipherTest {
     @Test
     public void correctValue2Test(){
         setupTest();
-        this.columnarTranspositionCipher = factory.getColumnarTranspositionCipher("hola");
+        this.columnarTranspositionCipher = factory.createCipher("columnar,hola");
         this.resultado = this.columnarTranspositionCipher.cipher(cadena);
         assertEquals(resultado,"oetsbeosojte*s**");
 
@@ -54,7 +49,7 @@ public class ColumnarTranspositionCipherTest {
 @Test
     public void keywordShort(){
         setupTest();
-        this.columnarTranspositionCipher = factory.getColumnarTranspositionCipher("a");
+        this.columnarTranspositionCipher = factory.createCipher("columnar,a");
         this.resultado = this.columnarTranspositionCipher.cipher(cadena);
         assertEquals(resultado,"estoesobjetos");
     }
@@ -62,7 +57,7 @@ public class ColumnarTranspositionCipherTest {
 @Test
 public void keywordLong(){
     setupTest();
-    this.columnarTranspositionCipher = factory.getColumnarTranspositionCipher("palabra");
+    this.columnarTranspositionCipher = factory.createCipher("columnar,palabra");
     Assert.assertThrows(NullPointerException.class,()->{this.columnarTranspositionCipher.cipher(cadena);});
 }
 
@@ -71,19 +66,15 @@ public void keywordLong(){
         setupTest();
         String parametro = "redictadoobjetos";
         String esperado = "redictadoobjetos";
-        //Valor vacio
-        this.columnarTranspositionCipher = factory.getColumnarTranspositionCipher("");
-        String resultadoVacio1 = this.columnarTranspositionCipher.cipher(parametro);
-        Assert.assertEquals(esperado, resultadoVacio1);
 
         //valor blanco - numeros o simbolos
-        this.columnarTranspositionCipher = factory.getColumnarTranspositionCipher(" ");
+        this.columnarTranspositionCipher = factory.createCipher("columnar, ");
         String resultadoVacio2 = this.columnarTranspositionCipher.cipher(parametro);
         Assert.assertEquals(esperado, resultadoVacio2);
 
-        Assert.assertThrows(IllegalArgumentException.class,()->{factory.getColumnarTranspositionCipher("*&^%$");});
+        Assert.assertThrows(IllegalArgumentException.class,()->{factory.createCipher("columnar,*&^%$");});
 
-        Assert.assertThrows(IllegalArgumentException.class,()->{factory.getColumnarTranspositionCipher("12345");});
+        Assert.assertThrows(IllegalArgumentException.class,()->{factory.createCipher("columnar,12345");});
     }
 
 
@@ -94,8 +85,8 @@ public void keywordLong(){
         String parametro = "irdedcatjoboseot";
         String esperado = "redictadoobjetos";
         //Act
-        this.columnarTransposition = factory.getColumnarTranspositionCipher("hola");
-        String resultado = this.columnarTransposition.decipher(parametro);
+        this.columnarTranspositionCipher = factory.createCipher("columnar,hola");
+        String resultado = this.columnarTranspositionCipher.decipher(parametro);
         //Assert
         Assert.assertEquals(esperado, resultado);
 

@@ -10,16 +10,15 @@ public class ConcreteSubstitutionCipherFactory extends CipherFactory{
 
     @Override
     public Cipher createCipher(String texto) {
-        parts = texto.trim().split("-");
+        parts = texto.split(",");
         part1 = parts[0];
         part2 = parts[1];
         part3 = parts[2];
         if(part1.equals("Cesar") || part1.equals("cesar")){
-            this.getCesarCipher(part2, Integer.valueOf(part3));
+            return this.getCesarCipher(part2, Integer.valueOf(part3));
         } else {
-            this.getVigenereCipher(part2, part3);
+            return this.getVigenereCipher(part2, part3);
         }
-        return null;
     }
 
     private Cipher getCesarCipher(String alfabeto, int salto){
@@ -44,7 +43,10 @@ public class ConcreteSubstitutionCipherFactory extends CipherFactory{
     }
 
     private Cipher getVigenereCipher(String alfabeto, String clave){
-        return new VigenereCipher(alfabeto,clave);
+        if(!alfabeto.isBlank())
+            return new VigenereCipher(alfabeto,clave);
+        else
+            return new VigenereCipher();
     }
 
 }

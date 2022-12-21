@@ -1,14 +1,19 @@
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import roo2.Cipher;
+import roo2.ConcreteTranspositionCipherFactory;
 import roo2.RailFenceCipher;
 
 public class RailFenceCipherTest {
-    private RailFenceCipher railFenceCipher;
+    private Cipher railFenceCipher;
+    private ConcreteTranspositionCipherFactory factory;
+
 
     @BeforeEach
     void setUp(){
-        railFenceCipher = new RailFenceCipher(2);
+        factory = new ConcreteTranspositionCipherFactory();
+        railFenceCipher = factory.createCipher("rail,2");
     }
 
 

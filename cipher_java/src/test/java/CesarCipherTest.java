@@ -1,22 +1,18 @@
 import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import roo2.CipherFactory;
-import roo2.VigenereCipher;
-import roo2.Cipher;
-
-
+import roo2.*;
 
 
 public class CesarCipherTest {
-    private CipherFactory factory;
+    private ConcreteSubstitutionCipherFactory factory;
     private Cipher cesarCipher;
 
 
     @BeforeEach
     void setUp(){
-        factory = new CipherFactory();
-        cesarCipher = factory.getCesarCipher("abcdefghijklmnopqrstuvwxyz", 3);
+        factory = new ConcreteSubstitutionCipherFactory();
+        cesarCipher = factory.createCipher("cesar,abcdefghijklmnopqrstuvwxyz,3");
     }
 
 
@@ -109,7 +105,7 @@ public class CesarCipherTest {
     @Test
     public void cipherTestWith2Parameters26Ok(){
         //Arrange
-        Cipher cesarCipherWith2Parameters =factory.getCesarCipher("abcdefghijklmnopqrstuvwxyz",26);
+        Cipher cesarCipherWith2Parameters = factory.createCipher("cesar,abcdefghijklmnopqrstuvwxyz,26");
         String parametro = "Hola";
         String esperado = "Cesar Cipher:Hola";
         //Act
@@ -121,7 +117,7 @@ public class CesarCipherTest {
     @Test
     public void cipherTestWith2ParametersEmptyAlphabetOk(){
         //Arrange
-        Cipher cesarCipherWith2Parameters =factory.getCesarCipher("",8);
+        Cipher cesarCipherWith2Parameters = factory.createCipher("cesar,,8");
         String parametro = "Hola";
         String esperado = "Cesar Cipher:Hola";
         //Act
@@ -136,7 +132,7 @@ public class CesarCipherTest {
         //Act
         //Assert
         Assert.assertThrows(StringIndexOutOfBoundsException.class,
-                ()->{factory.getCesarCipher("abcdefghijklmnopqrstuvwxyz",-10);} );
+                ()->{factory.createCipher("cesar,abcdefghijklmnopqrstuvwxyz,-10");} );
     }
 
 }
