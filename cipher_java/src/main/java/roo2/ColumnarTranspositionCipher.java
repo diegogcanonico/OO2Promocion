@@ -1,9 +1,6 @@
 package roo2;
 
-import javax.management.BadAttributeValueExpException;
-import java.util.Arrays;
-
-public class ColumnarTranspositionCipher extends DecoratorCipher implements Cipher{
+public class ColumnarTranspositionCipher extends ComplexCipher implements Cipher{
 
     private char [][] entrada;
     private int [] keywordNumbers;

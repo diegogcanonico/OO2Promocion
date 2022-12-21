@@ -1,9 +1,9 @@
 package roo2;
 
-public abstract class DecoratorCipher extends CipherText  {
+public abstract class ComplexCipher implements Cipher  {
 
 
-    public CipherText cipherText;
+    public Cipher cipherText;
 
     @Override
     public String cipher(String inputText) {
@@ -17,7 +17,7 @@ public abstract class DecoratorCipher extends CipherText  {
         return null;
     }
 
-    public void setCipherText(CipherText cipherText){
-        this.cipherText = cipherText;
+    public void setCipher(Cipher cipher){
+        this.cipherText = cipher;
     }
 }
