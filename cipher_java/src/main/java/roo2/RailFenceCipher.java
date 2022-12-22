@@ -1,6 +1,6 @@
 package roo2;
 
-public class  RailFenceCipher extends ComplexCipher implements Cipher{
+public class  RailFenceCipher extends ComplexCipher{
     String[] rails;
     BouncingIndex bIndex;
 

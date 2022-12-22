@@ -2,7 +2,7 @@ package roo2;
 
 //import roo2.Cipher;
 
-public class  VigenereCipher extends ComplexCipher implements Cipher{
+public class  VigenereCipher extends ComplexCipher{
     CharRing keyword;
     char[] alphabet;
 

@@ -1,6 +1,6 @@
 package roo2;
 
-public class ColumnarTranspositionCipher extends ComplexCipher implements Cipher{
+public class ColumnarTranspositionCipher extends ComplexCipher{
 
     private char [][] entrada;
     private int [] keywordNumbers;
