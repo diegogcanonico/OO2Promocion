@@ -38,7 +38,7 @@ public class  VigenereCipher extends ComplexCipher{
 
 
     public String cipher(String inputText){
-        if ((this.cipherText!= null) && (this.cipherText.cipher(inputText) != " ")) {
+        if ((this.cipherText!= null) && (!this.cipherText.getLastCipher())) {
             inputText = this.cipherText.cipher(inputText);
         }
         char[] result = new char[inputText.length()];

@@ -20,6 +20,8 @@ public class ConcreteComplexCipherFactory extends CipherFactory{
     @Override
     public Cipher createCipher(String texto) {
         parts = texto.split("-");
+        substitutionFactory = new ConcreteSubstitutionCipherFactory();
+        transpositionFactory = new ConcreteTranspositionCipherFactory();
         for(int i = 0; i < parts.length; i++){
             part = parts[i];
             substringPart = part.split(",");
@@ -27,8 +29,10 @@ public class ConcreteComplexCipherFactory extends CipherFactory{
             switch (cipherName){
                 case "cesar": case "vigenere":
                     cipher = substitutionFactory.createCipher(part);
+                    break;
                 case "rail": case "columnar":
                     cipher = transpositionFactory.createCipher(part);
+                    break;
             }
             if(i > 0){
                 complexCipher = (ComplexCipher)cipher;
@@ -36,6 +40,7 @@ public class ConcreteComplexCipherFactory extends CipherFactory{
                 lastCipher = complexCipher;
             } else {
                 lastCipher = (ComplexCipher)cipher;
+                lastCipher.setLastCipherTrue();
             }
         }
     return complexCipher;

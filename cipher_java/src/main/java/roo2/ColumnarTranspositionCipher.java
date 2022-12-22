@@ -41,7 +41,7 @@ public class ColumnarTranspositionCipher extends ComplexCipher{
     }
 
     public String cipher(String messaje){
-        if ((this.cipherText!= null) && (this.cipherText.cipher(messaje) != " ")) {
+        if ((this.cipherText!= null) && (this.cipherText.getLastCipher())) {
             messaje = this.cipherText.cipher(messaje);
         }
         if (!this.keyword.equals("") && !this.keyword.equals(" ") && this.keyword != null) {

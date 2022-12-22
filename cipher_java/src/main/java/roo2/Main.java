@@ -57,7 +57,13 @@ public class Main {
         resultado = columnar.decipher("lohuja*na");
         System.out.println("La frase cifrada es "+resultado);
 
-
+        System.out.println("----------------------------------------");
+        System.out.println("Prueba de Complex Cipher");
+        System.out.println("Lafrase a cifrar es alojomora");
+        CipherFactory factory3 = new ConcreteComplexCipherFactory();
+        Cipher complex = factory3.createCipher("vigenere,abcdefghijklmnopqrstuvwxyz,clave-RailFence,4-columnar,cifra");
+        resultado = complex.cipher("alojomora");
+        System.out.println("La frase cifrada es "+resultado);
 
 
 
